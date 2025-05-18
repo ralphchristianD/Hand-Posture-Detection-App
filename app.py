@@ -21,31 +21,31 @@ rtdetr_model = RTDETR("rtdetrl_posture.pt")
 
 rtdetr_model_fingers = RTDETR("rtdetr_fingers.pt")
 
-'''
-# Load RetinaNet model
-@st.cache_resource
-def load_retinanet_model():
-    model = retinanet_resnet50_fpn(pretrained=False)
-    in_features = model.head.classification_head.cls_logits.in_channels
-    num_anchors = model.head.classification_head.num_anchors
-    model.head.classification_head = RetinaNetClassificationHead(
-        in_channels=in_features,
-        num_anchors=num_anchors,
-        num_classes=3  # Background, proper, improper
-    )
-    model = torch.load(
-        "retinanet_full_model_posture.pth",
-        map_location="cpu"
-    )
-    model.eval()
-    return model
 
-retina_model = load_retinanet_model()
+# Load RetinaNet model
+# @st.cache_resource
+# def load_retinanet_model():
+#   model = retinanet_resnet50_fpn(pretrained=False)
+#    in_features = model.head.classification_head.cls_logits.in_channels
+#    num_anchors = model.head.classification_head.num_anchors
+#    model.head.classification_head = RetinaNetClassificationHead(
+#        in_channels=in_features,
+#        num_anchors=num_anchors,
+#        num_classes=3  # Background, proper, improper
+#    )
+#    model = torch.load(
+#        "retinanet_full_model_posture.pth",
+#        map_location="cpu"
+#    )
+#    model.eval()
+#    return model
+
+# retina_model = load_retinanet_model()
 
 
 # Preprocessing
-transform = transforms.Compose([transforms.ToTensor()])
-'''
+# transform = transforms.Compose([transforms.ToTensor()])
+
 # App UI
 st.title('Hand Posture Detection Using Deep Learning from Image')
 st.subheader('A Streamlit Web App for Hand Posture Detection')
