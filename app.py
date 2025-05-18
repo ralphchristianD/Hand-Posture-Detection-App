@@ -58,7 +58,7 @@ model_choice = st.selectbox("Choose a model", ["YOLOv11", "RT-DETR"])
 
 if uploaded_file:
     image = Image.open(uploaded_file).convert("RGB")
-    st.image(image, caption="Uploaded Image", use_container_width=True)
+    st.image(image, caption="Uploaded Image")
     
     threshold = 0.5
 
@@ -67,7 +67,7 @@ if uploaded_file:
         if model_choice == "YOLOv11":
             results = yolo_model.predict(image)
             pred_img = results[0].plot(labels=True, boxes=True)
-            st.image(pred_img, caption="Detected by YOLOv11", use_container_width=True)
+            st.image(pred_img, caption="Detected by YOLOv11")
 
             for box in results[0].boxes:
                 cls_id = int(box.cls[0].item())
@@ -77,7 +77,7 @@ if uploaded_file:
         elif model_choice == "RT-DETR":
             results = rtdetr_model.predict(image, conf=threshold)
             pred_img = results[0].plot(labels=True, boxes=True)
-            st.image(pred_img, caption="Detected by RT-DETR", use_container_width=True)
+            st.image(pred_img, caption="Detected by RT-DETR")
 
             for box in results[0].boxes:
                 cls_id = int(box.cls[0].item())
@@ -132,7 +132,7 @@ if uploaded_file:
         warning = False
         results = rtdetr_model_fingers.predict(image)
         pred_img = results[0].plot(labels=True, boxes=True)
-        st.image(pred_img, caption="Detected by RTDETR", use_container_width=True)
+        st.image(pred_img, caption="Detected by RTDETR")
              
         for box in results[0].boxes:
                 cls_id = int(box.cls[0].item())
